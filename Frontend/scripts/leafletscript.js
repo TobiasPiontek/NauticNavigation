@@ -1,7 +1,7 @@
 //dummy geojson objekt
 var myLines;
 var address = "http://localhost:8004/NauticNavigation";
-var accesstoken = "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw";
+var accesstoken = "pk.eyJ1IjoiNTE0eTNyMGZqNGNrIiwiYSI6ImNrZWcwdWpjMDEwc3MydW1sYWo4MWE4aGQifQ.6pqiTqUnCByAX5YUXPRPxQ";
 //Use this variable to set line style
 var myStyle = {
     "color": "#2e86c1",
@@ -35,7 +35,7 @@ var targetset = false;
 var weg;
 
 //loading of the leaflet map
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=' + accesstoken , {
+L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token=' + accesstoken , {
     maxZoom: 6,
     id: 'mapbox.light'
 }).addTo(mymap);
