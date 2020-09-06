@@ -28,6 +28,8 @@ var x1;
 var y1;
 var x2;
 var y2;
+var startset = false;
+var targetset = false;
 
 //Object that represents the ways later
 var weg;
@@ -80,7 +82,6 @@ function next() {
         state = 1;
         document.getElementById("back").disabled = false;
         document.getElementById("next").disabled = true;
-        document.getElementById("compute").disabled = false;
     }
 };
 
@@ -89,9 +90,14 @@ function back() {
         state = 0;
         document.getElementById("back").disabled = true;
         document.getElementById("next").disabled = false;
-        document.getElementById("compute").disabled = true;
     }
 };
+
+function checkComuputeState(){
+  if(startset && targetset){
+    document.getElementById("compute").disabled = false;
+  }
+}
 
 function compute() {
     if ((firstmarker != null) && (secondmarker != null)) {
@@ -130,6 +136,8 @@ function checkFirst() {
         };
         xhttp.open("POST", address, true);
         xhttp.send("SetNode" + ";" + document.getElementById("lat1").value + "," + document.getElementById("long1").value);
+        startset = true;
+        checkComuputeState();
     }
 };
 
@@ -149,4 +157,6 @@ function checkSecond() {
     };
     xhttp.open("POST", address, true);
     xhttp.send("SetNode" + ";" + document.getElementById("lat2").value + "," + document.getElementById("long2").value);
+    targetset = true;
+    checkComuputeState();
 };

@@ -9,8 +9,8 @@
 
 <body>
   <div id="mapcontainer" style="z-index: 1;position:absolute;top:0;left:0;width: 100%; height: 100%"></div>
-  <div id="buttoncontainer"style="z-index: 2;position:absolute;top:0;right:0;width: 300px; height: auto;background-color:White;opacity:0.8;border-radius:10px;border-style: solid;border-width: medium;padding-left: 10px;padding-right: 10px">
-      Start location: <button type="button" onclick="checkFirst()" id="point1">check coordinate</button>
+  <div id="buttoncontainer"style="z-index: 2;position:absolute;top:10px;right:10px;width: 250px; height: auto;background-color:White;opacity:0.8;border-radius:5px;border-style: solid;border-width: thin;padding-left: 10px;padding-right: 10px; padding-bottom: 0px;padding-top: 10px;">
+      Start location:
 
       <p style="text-align:left;">
           <label for="lat1">Latitude:</label>
@@ -26,9 +26,20 @@
         </span>
       </p>
 
+
+
+      <p style="text-align:left;">
+          <button type="button" onclick="back()" id="back" disabled>Set start</button>
+      <span style="float:right;">
+          <button type="button" onclick="checkFirst()" id="point1">check start</button>
+      </span>
+      </p>
+
+
+
 <hr>
 
-      Destination location: <button type="button" onclick="checkSecond()" id="point2">check coordinate</button>
+      Destination location:
       <p style="text-align:left;">
         <label for="lat2">Latitude:</label>
         <span style="float:right;">
@@ -43,8 +54,20 @@
         </span>
       </p>
 
+      <p style="text-align:left;">
+          <button type="button" onclick="next()" id="next">Set target</button>
+      <span style="float:right;">
+          <button type="button" onclick="checkSecond()" id="point2">check target</button>
+      </span>
+      </p>
 
-      <br/> <button type="button" onclick="back()" id="back" disabled>Set start</button> <button type="button" onclick="next()" id="next">Set target</button> <button type="button" onclick="compute()" id="compute" disabled>Calculate route</button>
+<hr>
+
+<p style="text-align:right;">
+  <button type="button" onclick="compute()" id="compute" disabled>Calculate route</button>
+</p>
+
+
   </div>
   <div id="logocontainer"style="z-index: 3;position:absolute;bottom:0;right:0">
     <img src="Logo.png"; width="300" height="150" align="bottom">
