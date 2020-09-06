@@ -9,26 +9,40 @@
 
 <body>
   <div id="mapcontainer" style="z-index: 1;position:absolute;top:0;left:0;width: 100%; height: 100%"></div>
-  <div id="buttoncontainer"style="z-index: 2;position:absolute;top:0;right:0;width: 20%; height: 30%;background-color:White;opacity:0.8;border-radius:10px;">
-      Start location: <button type="button" onclick="checkFirst()" id="point1">check coordinate</button> <br/>
+  <div id="buttoncontainer"style="z-index: 2;position:absolute;top:0;right:0;width: 300px; height: auto;background-color:White;opacity:0.8;border-radius:10px;border-style: solid;border-width: medium;padding-left: 10px;padding-right: 10px">
+      Start location: <button type="button" onclick="checkFirst()" id="point1">check coordinate</button>
 
-      <label for="lat1">Latitude:</label>
-      <input id="lat1" type="text" value="">
-      <br/>
+      <p style="text-align:left;">
+          <label for="lat1">Latitude:</label>
+          <span style="float:right;">
+              <input id="lat1" type="text" value="">
+          </span>
+      </p>
 
-      <label for="long1">Longitude:</label>
-      <input id="long1" type="text" value="">
+      <p style="text-align:left;">
+        <label for="long1">Longitude:</label>
+        <span style="float:right;">
+            <input id="long1" type="text" value="">
+        </span>
+      </p>
 
-      <br/>
-      <br/>
+<hr>
 
       Destination location: <button type="button" onclick="checkSecond()" id="point2">check coordinate</button>
-      <label for="lat2">Latitude:</label>
-      <input id="lat2" type="text" value="">
-      <br/>
-      <label for="long2">Longitude:</label>
-      <input id="long2" type="text" value="">
-      <br/>
+      <p style="text-align:left;">
+        <label for="lat2">Latitude:</label>
+        <span style="float:right;">
+            <input id="lat2" type="text" value="">
+        </span>
+      </p>
+
+      <p style="text-align:left;">
+        <label for="long2">Longitude:</label>
+        <span style="float:right;">
+            <input id="long2" type="text" value="">
+        </span>
+      </p>
+
 
       <br/> <button type="button" onclick="back()" id="back" disabled>Set start</button> <button type="button" onclick="next()" id="next">Set target</button> <button type="button" onclick="compute()" id="compute" disabled>Calculate route</button>
   </div>
