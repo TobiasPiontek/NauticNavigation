@@ -1,6 +1,6 @@
 //dummy geojson objekt
 var myLines;
-var address = "http://localhost:8004/MoogleGaps";
+var address = "http://localhost:8004/NauticNavigation";
 //Use this variable to set line style
 var myStyle = {
     "color": "#2e86c1",
@@ -108,7 +108,7 @@ function compute() {
                 weg = L.geoJSON(myLines, { style: myStyle }).addTo(mymap);
             }
         };
-        xhttp.open("POST", "http://localhost:8004/MoogleGaps", true);
+        xhttp.open("POST", address, true);
         xhttp.send("calculateRoute;" + document.getElementById("lat1").value + "," + document.getElementById("long1").value + ";" + document.getElementById("lat2").value + "," + document.getElementById("long2").value);
     }
 };
@@ -128,7 +128,7 @@ function checkFirst() {
                 firstmarker = new L.Marker([split[0], split[1]]).addTo(mymap);
             }
         };
-        xhttp.open("POST", "http://localhost:8004/MoogleGaps", true);
+        xhttp.open("POST", address, true);
         xhttp.send("SetNode" + ";" + document.getElementById("lat1").value + "," + document.getElementById("long1").value);
     }
 };
@@ -147,6 +147,6 @@ function checkSecond() {
             secondmarker = new L.Marker([split[0], split[1]]).addTo(mymap);
         }
     };
-    xhttp.open("POST", "http://localhost:8004/MoogleGaps", true);
+    xhttp.open("POST", address, true);
     xhttp.send("SetNode" + ";" + document.getElementById("lat2").value + "," + document.getElementById("long2").value);
 };

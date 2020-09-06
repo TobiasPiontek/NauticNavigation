@@ -20,7 +20,7 @@ public class WebServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        server.createContext("/MoogleGaps", new MyHandler());
+        server.createContext("/NauticNavigation", new MyHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
         System.out.println(new Timestamp(System.currentTimeMillis()) + " Web server is online!");
@@ -62,7 +62,7 @@ public class WebServer {
                     nodeID = GridGraph.findVertexInWater(nodeID);
                     response = GridGraph.idToLatitude(nodeID) + "," + GridGraph.idToLongitude(nodeID);
                 }
-                
+
 
                 if (split[0].equals("calculateRoute")) {
                     String[] startNode = split[1].split(",");
