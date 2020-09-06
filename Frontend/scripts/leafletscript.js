@@ -3,8 +3,8 @@ var myLines;
 
 //Use this variable to set line style
 var myStyle = {
-    "color": "#ff0000",
-    "weight": 10,
+    "color": "#2e86c1",
+    "weight": 5,
     "opacity": 1.00
 }
 
@@ -81,10 +81,6 @@ mymap.on('click', function(e) {
 function next() {
     if (state == 0) {
         state = 1;
-        document.getElementById("Out1").innerHTML = "Setzen des zweiten Markers";
-        document.getElementById("Out2").innerHTML = "Vorherigen Marker neu setzen";
-        document.getElementById("Out3").innerHTML = "Keine Funktion";
-        document.getElementById("Out4").innerHTML = "Berechne Weg zwischen Markern";
         document.getElementById("back").disabled = false;
         document.getElementById("next").disabled = true;
         document.getElementById("compute").disabled = false;
@@ -94,10 +90,6 @@ function next() {
 function back() {
     if (state == 1) {
         state = 0;
-        document.getElementById("Out1").innerHTML = "Setzen des ersten Markers";
-        document.getElementById("Out2").innerHTML = "Keine Funktion";
-        document.getElementById("Out3").innerHTML = "Nächsten Marker setzen";
-        document.getElementById("Out4").innerHTML = "Keine Funktion";
         document.getElementById("back").disabled = true;
         document.getElementById("next").disabled = false;
         document.getElementById("compute").disabled = true;
