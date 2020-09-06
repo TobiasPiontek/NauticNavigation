@@ -6,6 +6,7 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
+        CLInterface.printTitelScreen();
         if (CLInterface.generateNewGridGraph()) {
             String filepath = CLInterface.getFilename(".pbf", "./OSMMapData");
             int gridGraphSize = CLInterface.enterGridGraphResolution();

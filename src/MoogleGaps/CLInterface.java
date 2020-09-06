@@ -85,4 +85,16 @@ public class CLInterface {
             System.out.print("\n");
         }
     }
+
+    /**
+     * Prints the welcome screen of the navigation backend to the console
+     */
+    public static void printTitelScreen() {
+        System.out.println("Welcome to: ");
+        System.out.println("  _   _    _   _   _ _____ ___ ____   _   _    ___     _____ ____    _  _____ ___ ___  _   _ \n" +
+                " | \\ | |  / \\ | | | |_   _|_ _/ ___| | \\ | |  / \\ \\   / /_ _/ ___|  / \\|_   _|_ _/ _ \\| \\ | |\n" +
+                " |  \\| | / _ \\| | | | | |  | | |     |  \\| | / _ \\ \\ / / | | |  _  / _ \\ | |  | | | | |  \\| |\n" +
+                " | |\\  |/ ___ \\ |_| | | |  | | |___  | |\\  |/ ___ \\ V /  | | |_| |/ ___ \\| |  | | |_| | |\\  |\n" +
+                " |_| \\_/_/   \\_\\___/  |_| |___\\____| |_| \\_/_/   \\_\\_/  |___\\____/_/   \\_\\_| |___\\___/|_| \\_|");
+    }
 }
