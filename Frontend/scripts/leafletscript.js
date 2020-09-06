@@ -58,6 +58,10 @@ mymap.on('click', function(e) {
         //write coordinates to html
         document.getElementById("lat1").innerHTML = x1;
         document.getElementById("long1").innerHTML = y1;
+		checkFirst();
+		compute();
+		next();
+		
     } else {
         if (secondmarker) {
             mymap.removeLayer(secondmarker);
@@ -67,6 +71,9 @@ mymap.on('click', function(e) {
         y2 = k.lng;
         document.getElementById("lat2").innerHTML = x2;
         document.getElementById("long2").innerHTML = y2;
+		checkSecond();
+		compute();
+		back();
     }
 });
 
