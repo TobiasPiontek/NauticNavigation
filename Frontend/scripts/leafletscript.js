@@ -14,7 +14,7 @@ document.getElementById("next").disabled = false;
 document.getElementById("compute").disabled = true;
 
 //the map element
-var mymap = L.map('mapcontainer').setView([51.316, 10.734], 6);
+var mymap = L.map('mapcontainer').setView([0.0, 0.0], 2);
 
 //marker
 var firstmarker;
@@ -34,10 +34,7 @@ var weg;
 
 //loading of the leaflet map
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 10,
     id: 'mapbox.light'
 }).addTo(mymap);
 
@@ -56,8 +53,8 @@ mymap.on('click', function(e) {
         x1 = k.lat;
         y1 = k.lng;
         //write coordinates to html
-        document.getElementById("lat1").innerHTML = x1;
-        document.getElementById("long1").innerHTML = y1;
+        document.getElementById("lat1").value = x1;
+        document.getElementById("long1").value = y1;
 		checkFirst();
 		compute();
 		next();
@@ -69,8 +66,8 @@ mymap.on('click', function(e) {
         secondmarker = new L.Marker(k).addTo(mymap);
         x2 = k.lat;
         y2 = k.lng;
-        document.getElementById("lat2").innerHTML = x2;
-        document.getElementById("long2").innerHTML = y2;
+        document.getElementById("lat2").value = x2;
+        document.getElementById("long2").value = y2;
 		checkSecond();
 		compute();
 		back();
@@ -112,7 +109,7 @@ function compute() {
             }
         };
         xhttp.open("POST", "http://localhost:8004/MoogleGaps", true);
-        xhttp.send("calculateRoute;" + document.getElementById("lat1").innerHTML + "," + document.getElementById("long1").innerHTML + ";" + document.getElementById("lat2").innerHTML + "," + document.getElementById("long2").innerHTML);
+        xhttp.send("calculateRoute;" + document.getElementById("lat1").value + "," + document.getElementById("long1").value + ";" + document.getElementById("lat2").value + "," + document.getElementById("long2").value);
     }
 };
 
@@ -123,8 +120,8 @@ function checkFirst() {
             if (this.readyState == 4 && this.status == 200) {
                 var response = this.responseText;
                 var split = response.split(",");
-                document.getElementById("lat1").innerHTML = split[0];
-                document.getElementById("long1").innerHTML = split[1];
+                document.getElementById("lat1").value = split[0];
+                document.getElementById("long1").value = split[1];
                 if (firstmarker) {
                     mymap.removeLayer(firstmarker);
                 }
@@ -132,7 +129,7 @@ function checkFirst() {
             }
         };
         xhttp.open("POST", "http://localhost:8004/MoogleGaps", true);
-        xhttp.send("SetNode" + ";" + document.getElementById("lat1").innerHTML + "," + document.getElementById("long1").innerHTML);
+        xhttp.send("SetNode" + ";" + document.getElementById("lat1").value + "," + document.getElementById("long1").value);
     }
 };
 
@@ -142,8 +139,8 @@ function checkSecond() {
         if (this.readyState == 4 && this.status == 200) {
             var response = this.responseText;
             var split = response.split(",");
-            document.getElementById("lat2").innerHTML = split[0];
-            document.getElementById("long2").innerHTML = split[1];
+            document.getElementById("lat2").value = split[0];
+            document.getElementById("long2").value = split[1];
             if (secondmarker) {
                 mymap.removeLayer(secondmarker);
             }
@@ -151,5 +148,5 @@ function checkSecond() {
         }
     };
     xhttp.open("POST", "http://localhost:8004/MoogleGaps", true);
-    xhttp.send("SetNode" + ";" + document.getElementById("lat2").innerHTML + "," + document.getElementById("long2").innerHTML);
+    xhttp.send("SetNode" + ";" + document.getElementById("lat2").value + "," + document.getElementById("long2").value);
 };

@@ -9,17 +9,29 @@
 
 <body>
   <div id="mapcontainer" style="z-index: 1;position:absolute;top:0;left:0;width: 100%; height: 100%"></div>
-  <div id="buttoncontainer"style="z-index: 2;position:absolute;top:0;right:0;width: 20%; height: 30%;background-color:White;opacity:0.8">
-      Lat1:
-      <id id="lat1"></id> Long1:
-      <id id="long1"></id>
-      <button type="button" onclick="checkFirst()" id="point1">check coordinate</button>
-      <br/> Lat2:
-      <id id="lat2"></id> Long2:
-      <id id="long2"></id>
-      <button type="button" onclick="checkSecond()" id="point2">check coordinate</button>
+  <div id="buttoncontainer"style="z-index: 2;position:absolute;top:0;right:0;width: 20%; height: 30%;background-color:White;opacity:0.8;border-radius:10px;">
+      Start location: <button type="button" onclick="checkFirst()" id="point1">check coordinate</button> <br/>
+
+      <label for="lat1">Latitude:</label>
+      <input id="lat1" type="text" value="">
+      <br/>
+
+      <label for="long1">Longitude:</label>
+      <input id="long1" type="text" value="">
+
+      <br/>
+      <br/>
+
+      Destination location: <button type="button" onclick="checkSecond()" id="point2">check coordinate</button>
+      <label for="lat2">Latitude:</label>
+      <input id="lat2" type="text" value="">
+      <label for="long2">Longitude:</label>
+      <input id="long2" type="text" value="">
+
       <br/> <button type="button" onclick="back()" id="back" disabled>Set start</button> <button type="button" onclick="next()" id="next">Set target</button> <button type="button" onclick="compute()" id="compute" disabled>Calculate route</button>
-        <img src="Logo.png"; width="300" height="150" align="bottom">
+  </div>
+  <div id="logocontainer"style="z-index: 3;position:absolute;bottom:0;right:0">
+    <img src="Logo.png"; width="300" height="150" align="bottom">
   </div>
 
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
