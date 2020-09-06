@@ -1,6 +1,6 @@
 //dummy geojson objekt
 var myLines;
-
+var address = "http://localhost:8004/MoogleGaps";
 //Use this variable to set line style
 var myStyle = {
     "color": "#2e86c1",
@@ -34,7 +34,7 @@ var weg;
 
 //loading of the leaflet map
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    maxZoom: 10,
+    maxZoom: 6,
     id: 'mapbox.light'
 }).addTo(mymap);
 
