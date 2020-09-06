@@ -1,4 +1,5 @@
-# MoogleGaps 
+
+<img src="./Frontend/Logo.png" alt="drawing" width="200"> <br/>
 Repository for the University Stuttgart "Fachpraktikum"
 Join Meetings with this Link: https://jitsi-meet.fmi.uni-stuttgart.de/AlgLabCourseMeetingSS20
 
@@ -47,6 +48,9 @@ Implement Dijkstra’s Algorithm for shortest paths on your grid data structure.
 
 #### Task 6: Interactive Routing Front End
 Add a GUI to your project. It should be possible to set start and end nodesas well as visualizing the route. The calculated distance should be displayedin your GUI.
+
+#### Task 7: Speed Things Up
+Implement a speed-up technique/heuristic for your project.
 
 #### Dependencies used (located in dependencies folder):
 - Osmosis Pbf

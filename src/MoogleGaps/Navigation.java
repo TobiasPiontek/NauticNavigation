@@ -16,7 +16,7 @@ public class Navigation {
         weights = new double[GridGraph.vertexData.length];
         prev = new int[GridGraph.vertexData.length];
 
-        Comparator<Integer> comp = new PriorityComparator();
+        Comparator<Integer> comp = new DijkstraPriorityComparator();
         queue = new PriorityQueue<Integer>(GridGraph.vertexData.length, comp);
         boolean[] visited = new boolean[GridGraph.vertexData.length];
 
@@ -125,7 +125,7 @@ public class Navigation {
         return 0.0;
     }
 
-    private static class PriorityComparator implements Comparator<Integer> {
+    private static class DijkstraPriorityComparator implements Comparator<Integer> {
         public int compare(Integer index1, Integer index2) {
             return Double.compare(weights[index1], weights[index2]);
         }
