@@ -62,8 +62,7 @@ public class WebServer {
                     nodeID = GridGraph.findVertexInWater(nodeID);
                     response = GridGraph.idToLatitude(nodeID) + "," + GridGraph.idToLongitude(nodeID);
                 }
-
-
+                
                 if (split[0].equals("calculateRoute")) {
                     String[] startNode = split[1].split(",");
                     String[] endNode = split[2].split(",");
