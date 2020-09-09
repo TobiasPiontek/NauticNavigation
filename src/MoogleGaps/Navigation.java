@@ -7,11 +7,18 @@ import java.util.PriorityQueue;
 
 public class Navigation {
 
-    private static double[] weights;
-    private static double[] weightsWithHeuristic; //used for a star calculation
+    private static double[] weights;                //shared with dijkstra and astar
+    private static double[] weightsWithHeuristic;   //used for a star calculation
     private static PriorityQueue<Integer> queue;
     private static int[] prev;
 
+    /**
+     * Implementation of the actual calculation
+     *
+     * @param sourceId
+     * @param targetId
+     * @return
+     */
     private static double dijkstraCalculation(int sourceId, int targetId) {
         //Initialization
         weights = new double[GridGraph.vertexData.length];
@@ -58,6 +65,13 @@ public class Navigation {
     }
 
 
+    /**
+     * Implementation of the actual path calculation
+     *
+     * @param sourceId
+     * @param targetId
+     * @return
+     */
     private static double aStarCalculation(int sourceId, int targetId) {
         //Initialization
         weights = new double[GridGraph.vertexData.length];
@@ -109,6 +123,8 @@ public class Navigation {
 
 
     /**
+     * Used to calculate the estimated distance between current node and target
+     *
      * @param startId Grid id of startnode
      * @param destId  Grid id of endnode
      * @return the distance between the two nodes in kilometers
@@ -142,8 +158,14 @@ public class Navigation {
         return surroundedByWater;
     }
 
+    /**
+     * This method is shared between dijkstra and astar to iterate over the path calculated
+     *
+     * @param sourceId startnode id on grid graph
+     * @param targetId targetnode id on grid graph
+     * @return the node ids representing the path
+     */
     private static ArrayList<Integer> getWay(int sourceId, int targetId) {
-
         int currentId = targetId;
         ArrayList<Integer> path = new ArrayList<>();
         while (currentId != sourceId) {
@@ -160,17 +182,34 @@ public class Navigation {
         return path;
     }
 
+    /**
+     * @param sourceId node on grid graph to start
+     * @param targetId node on grid graph to reach
+     * @return a List of nodeids that represent the calculated route
+     */
     public static ArrayList<Integer> dijkstra(int sourceId, int targetId) {
         dijkstraCalculation(sourceId, targetId);
         return getWay(sourceId, targetId);
     }
 
+    /**
+     * @param sourceId node on grid graph to start
+     * @param targetId node on grid graph to reach
+     * @return a List of nodeids that represent the calculated route
+     */
     public static ArrayList<Integer> aStar(int sourceId, int targetId) {
         aStarCalculation(sourceId, targetId);
         return getWay(sourceId, targetId);
     }
 
 
+    /**
+     * This method is shared between dijkstra and astar
+     *
+     * @param index1 of start node on grid graph
+     * @param index2 of target node on grid graph
+     * @return the distance in kilometers
+     */
     private static double getCosts(int index1, int index2) {
         int[] coordinates1 = GridGraph.idToGrid(index1);
         int[] coordinates2 = GridGraph.idToGrid(index2);
@@ -211,5 +250,4 @@ public class Navigation {
             return Double.compare(weightsWithHeuristic[index1], weightsWithHeuristic[index2]);
         }
     }
-
 }
