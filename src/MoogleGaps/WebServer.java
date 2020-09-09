@@ -10,8 +10,14 @@ import java.net.InetSocketAddress;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+
 public class WebServer {
-    public static void startWebServer() {
+    private static String navigationModes;
+
+    /**
+     * @param navigationMode accepts either "astar" or "dijkstra" as an input to switch between both navigation modes
+     */
+    public static void startWebServer(String navigationMode) {
         System.out.println(new Timestamp(System.currentTimeMillis()) + " Starting web server...");
         InetSocketAddress Adresse = new InetSocketAddress(8004);
         HttpServer server = null;
@@ -20,11 +26,13 @@ public class WebServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        navigationModes = navigationMode;
         server.createContext("/NauticNavigation", new MyHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
         System.out.println(new Timestamp(System.currentTimeMillis()) + " Web server is online!");
         System.out.println("Start of the web server communication logs:");
+
     }
 
     private static class MyHandler implements HttpHandler {
@@ -62,7 +70,7 @@ public class WebServer {
                     nodeID = GridGraph.findVertexInWater(nodeID);
                     response = GridGraph.idToLatitude(nodeID) + "," + GridGraph.idToLongitude(nodeID);
                 }
-                
+
                 if (split[0].equals("calculateRoute")) {
                     String[] startNode = split[1].split(",");
                     String[] endNode = split[2].split(",");
@@ -72,7 +80,15 @@ public class WebServer {
                     double endLongitude = Double.parseDouble(endNode[1]);
                     int sourceId = GridGraph.findVertex(startLongitude, startLatitude);
                     int targetId = GridGraph.findVertex(endLongitude, endLatitude);
-                    ArrayList<Integer> route = Navigation.dijkstra(sourceId, targetId);
+                    ArrayList<Integer> route;
+                    if (navigationModes.equalsIgnoreCase("dijkstra")) {
+                        route = Navigation.dijkstra(sourceId, targetId);
+                    } else if (navigationModes.equalsIgnoreCase("astar")) {
+                        route = Navigation.aStar(sourceId, targetId);
+                    } else {
+                        route = new ArrayList();
+                        System.err.println("This routing option has not been implemented!");
+                    }
                     response = GeoJson.generateRoute(GridGraph.idToLongitude(route), GridGraph.idToLatitude(route));
                 }
                 System.out.println(new Timestamp(System.currentTimeMillis()) + " [Backend  -> Frontend]: " + response);

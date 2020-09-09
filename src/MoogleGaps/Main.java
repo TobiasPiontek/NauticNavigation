@@ -25,6 +25,6 @@ public class Main {
         //CLInterface.generateNavigationRoute();
 
         //Start of the Webserver
-        WebServer.startWebServer();
+        WebServer.startWebServer("astar");
     }
 }
