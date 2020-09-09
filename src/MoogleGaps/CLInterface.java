@@ -49,15 +49,13 @@ public class CLInterface {
         return scanner.nextInt();
     }
 
-    public static boolean generateNewGridGraph() {
+    public static int generateNewGridGraph() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Generate new grid graph [0] or use existing one[1]? ");
-        int input = scanner.nextInt();
-        if (input == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        System.out.print(
+                "[0] Generate new grid graph and start webserver\n" +
+                        "[1] use pre generated one and start webserver\n" +
+                        "[2] start benchmarking mode: ");
+        return scanner.nextInt();
     }
 
     public static void progressPercentage(int remain, int total) {

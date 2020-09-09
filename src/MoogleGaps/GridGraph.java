@@ -98,7 +98,8 @@ public class GridGraph {
         }
     }
 
-    private static boolean vertexSurroundedByWater(int vertexId) {
+
+    public static boolean vertexSurroundedByWater(int vertexId) {
         if (!vertexData[vertexId]) {
             if (Navigation.isSurroundedByWater(vertexId)) {
                 return true;
@@ -155,10 +156,6 @@ public class GridGraph {
         return vertexId;
     }
 
-    private static double getEuclideanDistance(double xA, double yA, double xB, double yB) {
-        return Math.sqrt(Math.pow(xA - xB, 2) + Math.pow(yA - yB, 2));
-    }
-
     private static int gridToId(int row, int col) {
         return col * southToNorth + row;
     }
@@ -171,6 +168,7 @@ public class GridGraph {
         coordinates[1] = col;
         return coordinates;
     }
+
 
     public static boolean inWater(int row, int col) {
         return !vertexData[gridToId(row, col)];

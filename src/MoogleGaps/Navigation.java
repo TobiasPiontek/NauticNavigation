@@ -11,6 +11,7 @@ public class Navigation {
     private static double[] weightsWithHeuristic;   //used for a star calculation
     private static PriorityQueue<Integer> queue;
     private static int[] prev;
+    public static int pulls;    //used to measure the times an element of the heap got pulled
 
     /**
      * Implementation of the actual calculation
@@ -25,7 +26,7 @@ public class Navigation {
         prev = new int[GridGraph.vertexData.length];
 
         Comparator<Integer> comp = new DijkstraPriorityComparator();
-        queue = new PriorityQueue<Integer>(GridGraph.vertexData.length, comp);
+        queue = new PriorityQueue<>(GridGraph.vertexData.length, comp);
         boolean[] visited = new boolean[GridGraph.vertexData.length];
 
         Arrays.fill(weights, Double.POSITIVE_INFINITY);
@@ -38,8 +39,10 @@ public class Navigation {
         double currentWeight;
         double cost;
         boolean surroundedByWater;
+        pulls = 0;
         do {
             currentNode = queue.poll();
+            pulls++;
             currentWeight = weights[currentNode];
             if (!visited[currentNode]) {
                 int[] neighbors = GridGraph.getNeighbors(currentNode);
@@ -79,7 +82,7 @@ public class Navigation {
         prev = new int[GridGraph.vertexData.length];
 
         Comparator<Integer> comp = new AStarPrioritiyComparator();
-        queue = new PriorityQueue<Integer>(GridGraph.vertexData.length, comp);
+        queue = new PriorityQueue<>(GridGraph.vertexData.length, comp);
         boolean[] visited = new boolean[GridGraph.vertexData.length];
 
         Arrays.fill(weights, Double.POSITIVE_INFINITY);
@@ -93,8 +96,10 @@ public class Navigation {
         double currentWeight;
         double cost;
         boolean surroundedByWater;
+        pulls = 0;
         do {
             currentNode = queue.poll();
+            pulls++;
             currentWeight = weights[currentNode];
             if (!visited[currentNode]) {
                 int[] neighbors = GridGraph.getNeighbors(currentNode);
