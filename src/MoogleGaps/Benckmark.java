@@ -1,5 +1,6 @@
 package MoogleGaps;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Benckmark {
@@ -12,6 +13,9 @@ public class Benckmark {
     private static long[] aStarTimeConsumption;
     private static boolean[] aStarFoundWay;
 
+    private static int[] startNodes;
+    private static int[] endNodes;
+
     public static void performBenchmark() {
         System.out.println("Setup the benchmark configuration");
         GridGraph.deserialize(CLInterface.getFilename(".ser", "./OSMCacheData"));
@@ -19,8 +23,9 @@ public class Benckmark {
         Scanner scanner = new Scanner(System.in);
         int sampleSize = scanner.nextInt();
         generateNodePoints(sampleSize);
-        int[] startNodes = generateNodePoints(sampleSize);
-        int[] endNodes = generateNodePoints(sampleSize);
+        startNodes = generateNodePoints(sampleSize).clone();
+
+        endNodes = generateNodePoints(sampleSize);
         //init Benchmarking variables
         dijkstraPulls = new int[sampleSize];
         dijkstraTimeConsumption = new long[sampleSize];
@@ -33,8 +38,6 @@ public class Benckmark {
         calculateDijkstraBenchmark(startNodes, endNodes);
         calculateAStarBenchmark(startNodes, endNodes);
         printResults();
-
-
     }
 
     private static void calculateDijkstraBenchmark(int[] startNodes, int[] endNodes) {
@@ -67,16 +70,20 @@ public class Benckmark {
                 double longitude = Math.random() * 180 - 90;
                 nodeIdGridGraph = GridGraph.findVertex(longitude, latitude);
             } while (!Navigation.isSurroundedByWater(nodeIdGridGraph));
+            nodesInWater[i] = nodeIdGridGraph;
             //System.out.println("Debug: longitude: " + GridGraph.idToLongitude(nodeIdGridGraph) + ", latitude: " + GridGraph.idToLatitude(nodeIdGridGraph));
         }
-        return nodesInWater;
+        return nodesInWater.clone();
     }
 
     private static void printResults() {
+        DecimalFormat df = new DecimalFormat("0.00");
         for (int i = 0; i < dijkstraPulls.length; i++) {
-            System.out.println("Dijkstra: " + dijkstraTimeConsumption[i] / Math.pow(10, 9) + "Astar: " + aStarTimeConsumption[i] / Math.pow(10, 9));
+            System.out.println("from: " + "lat: " + df.format(GridGraph.idToLatitude(startNodes[i])) + " lon: " + df.format(GridGraph.idToLongitude(startNodes[i]))
+                    + " to " + "lat: " + df.format(GridGraph.idToLatitude(endNodes[i])) + " lon: " + df.format(GridGraph.idToLongitude(endNodes[i]))
+                    + "Dijkstra: " + dijkstraTimeConsumption[i] / Math.pow(10, 9) + "sec " + " Nodes popped: " + dijkstraPulls[i]
+                    + "Astar: " + aStarTimeConsumption[i] / Math.pow(10, 9) + "sec" + " Nodes popped: " + aStarPulls[i]);
         }
     }
-
 
 }
