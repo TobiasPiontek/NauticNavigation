@@ -134,7 +134,7 @@ public class Navigation {
      * @param destId  Grid id of endnode
      * @return the distance between the two nodes in kilometers
      */
-    private static double getHeuristicDistance(int startId, int destId) {
+    public static double getHeuristicDistance(int startId, int destId) {
         double startLat = GridGraph.idToLatitude(startId);
         double startLon = GridGraph.idToLongitude(startId);
         double[] startNVector = Geometry.getNVector(startLat, startLon);

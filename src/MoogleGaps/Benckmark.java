@@ -1,6 +1,10 @@
 package MoogleGaps;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Benckmark {
@@ -83,7 +87,19 @@ public class Benckmark {
                     + " to " + "lat: " + df.format(GridGraph.idToLatitude(endNodes[i])) + " lon: " + df.format(GridGraph.idToLongitude(endNodes[i]))
                     + "Dijkstra: " + dijkstraTimeConsumption[i] / Math.pow(10, 9) + "sec " + " Nodes popped: " + dijkstraPulls[i]
                     + "Astar: " + aStarTimeConsumption[i] / Math.pow(10, 9) + "sec" + " Nodes popped: " + aStarPulls[i]);
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM;HH.mm");
+                writeDataToCsv("./BenchmarkData/" + dijkstraPulls.length + "runs," + "grid_size=" + GridGraph.vertexData.length + ",date=" + sdf.format(new Timestamp(System.currentTimeMillis())) + ".csv");
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    private static void writeDataToCsv(String filepath) throws FileNotFoundException {
+        PrintWriter out = new PrintWriter(filepath);
+        out.println("Das,ist,ein,test");
+        out.close();
+    }
 }
