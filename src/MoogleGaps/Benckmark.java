@@ -41,7 +41,13 @@ public class Benckmark {
 
         calculateDijkstraBenchmark(startNodes, endNodes);
         calculateAStarBenchmark(startNodes, endNodes);
-        printResults();
+        //printResults();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM;HH.mm");
+        try {
+            writeDataToCsv("./BenchmarkData/" + dijkstraPulls.length + "runs," + "grid_size=" + GridGraph.vertexData.length + ",date=" + sdf.format(new Timestamp(System.currentTimeMillis())) + ".csv");
+        } catch (FileNotFoundException e) {
+
+        }
     }
 
     private static void calculateDijkstraBenchmark(int[] startNodes, int[] endNodes) {
@@ -87,19 +93,73 @@ public class Benckmark {
                     + " to " + "lat: " + df.format(GridGraph.idToLatitude(endNodes[i])) + " lon: " + df.format(GridGraph.idToLongitude(endNodes[i]))
                     + "Dijkstra: " + dijkstraTimeConsumption[i] / Math.pow(10, 9) + "sec " + " Nodes popped: " + dijkstraPulls[i]
                     + "Astar: " + aStarTimeConsumption[i] / Math.pow(10, 9) + "sec" + " Nodes popped: " + aStarPulls[i]);
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM;HH.mm");
-                writeDataToCsv("./BenchmarkData/" + dijkstraPulls.length + "runs," + "grid_size=" + GridGraph.vertexData.length + ",date=" + sdf.format(new Timestamp(System.currentTimeMillis())) + ".csv");
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     private static void writeDataToCsv(String filepath) throws FileNotFoundException {
         PrintWriter out = new PrintWriter(filepath);
-        out.println("Das,ist,ein,test");
+        out.println("start lat, start long, dest lat, dest long, dijkstra time, astar time, dijsktra node pulls,  astar node pulls, dijkstra found, astar found");
+        double dijkstraTimeTotal = 0;
+        double dijkstraTimeFound = 0;
+        double astarTimeTotal = 0;
+        double astarTimeFound = 0;
+        long dijkstraPullsTotal = 0;
+        long dijkstraPullsFound = 0;
+        long aStarPullsTotal = 0;
+        long aStarPullsFound = 0;
+        int dijkstraFound = 0;
+        int astarFound = 0;
+
+        for (int i = 0; i < dijkstraPulls.length; i++) {
+            out.println(
+                    GridGraph.idToLatitude(startNodes[i]) + ","
+                            + GridGraph.idToLongitude(startNodes[i]) + ","
+                            + GridGraph.idToLatitude(endNodes[i]) + ","
+                            + GridGraph.idToLongitude(endNodes[i]) + ","
+                            + dijkstraTimeConsumption[i] / Math.pow(10, 9) + ","
+                            + aStarTimeConsumption[i] / Math.pow(10, 9) + ","
+                            + dijkstraPulls[i] + ","
+                            + aStarPulls[i] + ","
+                            + dijkstrafoundWay[i] + ","
+                            + aStarFoundWay[i]);
+
+            dijkstraTimeTotal += dijkstraTimeConsumption[i] / Math.pow(10, 9);
+            astarTimeTotal += aStarTimeConsumption[i] / Math.pow(10, 9);
+            dijkstraPullsTotal += dijkstraPulls[i];
+            aStarPullsTotal += aStarPulls[i];
+
+            //calculate only routes that have a path
+            if (dijkstrafoundWay[i]) {
+                dijkstraTimeFound += dijkstraTimeConsumption[i] / Math.pow(10, 9);
+                dijkstraPullsFound += dijkstraPulls[i];
+                dijkstraFound++;
+            }
+            if (aStarFoundWay[i]) {
+                astarTimeFound += aStarTimeConsumption[i] / Math.pow(10, 9);
+                aStarPullsFound += aStarPulls[i];
+                astarFound++;
+            }
+        }
+        out.println();
+        out.print("Analysis");
+        out.println("Average all" + ",,,,"
+                + dijkstraTimeTotal / dijkstraPulls.length + ","
+                + astarTimeTotal / dijkstraPulls.length + ","
+                + dijkstraPullsTotal / dijkstraPulls.length + ","
+                + aStarPullsTotal / dijkstraPulls.length
+                + dijkstraPulls.length + ","
+                + dijkstraPulls.length
+        );
+        out.println("time speedup," + dijkstraTimeTotal / astarTimeTotal);
+        out.println();
+        out.println("Average found" + ",,,,"
+                + dijkstraTimeFound / dijkstraFound + ","
+                + astarTimeFound / astarFound + ","
+                + dijkstraPullsFound / dijkstraFound + ","
+                + aStarPullsFound / astarFound
+                + dijkstraFound + ","
+                + astarFound
+        );
         out.close();
     }
 }
