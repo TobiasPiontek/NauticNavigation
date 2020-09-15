@@ -3,7 +3,6 @@ package MoogleGaps;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -76,25 +75,16 @@ public class Benckmark {
         for (int i = 0; i < sampleSize; i++) {
             int nodeIdGridGraph;
             do {
-                double latitude = Math.random() * 360 - 180;
-                double longitude = Math.random() * 180 - 90;
+                double latitude = Math.random() * 180.0 - 90.0;
+                double longitude = Math.random() * 360.0 - 180.0;
                 nodeIdGridGraph = GridGraph.findVertex(longitude, latitude);
-            } while (!Navigation.isSurroundedByWater(nodeIdGridGraph));
+            } while (/*!Navigation.isSurroundedByWater(nodeIdGridGraph) && */GridGraph.vertexData[nodeIdGridGraph]);
             nodesInWater[i] = nodeIdGridGraph;
             //System.out.println("Debug: longitude: " + GridGraph.idToLongitude(nodeIdGridGraph) + ", latitude: " + GridGraph.idToLatitude(nodeIdGridGraph));
         }
         return nodesInWater.clone();
     }
 
-    private static void printResults() {
-        DecimalFormat df = new DecimalFormat("0.00");
-        for (int i = 0; i < dijkstraPulls.length; i++) {
-            System.out.println("from: " + "lat: " + df.format(GridGraph.idToLatitude(startNodes[i])) + " lon: " + df.format(GridGraph.idToLongitude(startNodes[i]))
-                    + " to " + "lat: " + df.format(GridGraph.idToLatitude(endNodes[i])) + " lon: " + df.format(GridGraph.idToLongitude(endNodes[i]))
-                    + "Dijkstra: " + dijkstraTimeConsumption[i] / Math.pow(10, 9) + "sec " + " Nodes popped: " + dijkstraPulls[i]
-                    + "Astar: " + aStarTimeConsumption[i] / Math.pow(10, 9) + "sec" + " Nodes popped: " + aStarPulls[i]);
-        }
-    }
 
     private static void writeDataToCsv(String filepath) throws FileNotFoundException {
         PrintWriter out = new PrintWriter(filepath);
@@ -141,7 +131,8 @@ public class Benckmark {
             }
         }
         out.println();
-        out.print("Analysis");
+        out.println("Analysis");
+        out.println();
         out.println("Average all" + ",,,,"
                 + dijkstraTimeTotal / dijkstraPulls.length + ","
                 + astarTimeTotal / dijkstraPulls.length + ","
@@ -150,7 +141,10 @@ public class Benckmark {
                 + dijkstraPulls.length + ","
                 + dijkstraPulls.length
         );
-        out.println("time speedup," + dijkstraTimeTotal / astarTimeTotal);
+        out.println("time speedup" + ","
+                + dijkstraTimeTotal / astarTimeTotal + ","
+                + "nodes used" + ","
+                + (double) aStarPullsTotal / dijkstraPullsTotal);
         out.println();
         out.println("Average found" + ",,,,"
                 + dijkstraTimeFound / dijkstraFound + ","
@@ -160,6 +154,11 @@ public class Benckmark {
                 + dijkstraFound + ","
                 + astarFound
         );
+        out.println("time speedup" + ","
+                + dijkstraTimeFound / astarTimeFound + ","
+                + "nodes used" + ","
+                + (double) aStarPullsFound / dijkstraPullsFound);
+        out.println();
         out.close();
     }
 }

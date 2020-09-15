@@ -114,7 +114,6 @@ public class Navigation {
                                 weights[neighbor] = currentWeight + cost;
                                 weightsWithHeuristic[neighbor] = weights[neighbor] + getHeuristicDistance(neighbor, targetId);
                                 prev[neighbor] = currentNode;
-
                             }
                             queue.add(neighbor);
                         }
@@ -179,7 +178,6 @@ public class Navigation {
             currentId = prev[currentId];
             //preventing loop during way readout
             if (currentId == prev[currentId]) {
-                System.err.println("No possible route could be found!");
                 return new ArrayList<>();
             }
         }

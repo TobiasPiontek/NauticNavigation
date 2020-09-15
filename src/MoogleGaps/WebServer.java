@@ -89,6 +89,9 @@ public class WebServer {
                         route = new ArrayList();
                         System.err.println("This routing option has not been implemented!");
                     }
+                    if (route.isEmpty()) {
+                        System.err.println("No possible route could be found!");
+                    }
                     response = GeoJson.generateRoute(GridGraph.idToLongitude(route), GridGraph.idToLatitude(route));
                 }
                 System.out.println(new Timestamp(System.currentTimeMillis()) + " [Backend  -> Frontend]: " + response);
