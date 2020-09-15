@@ -152,7 +152,7 @@ public class Navigation {
     public static boolean isSurroundedByWater(int vertex) {
         boolean surroundedByWater;
         int[] neighborsOfNeighbor;
-        surroundedByWater = true;
+        surroundedByWater = !GridGraph.vertexData[vertex];
         neighborsOfNeighbor = GridGraph.getNeighbors(vertex);
         for (int neighborsNeighbor : neighborsOfNeighbor) {
             if (GridGraph.vertexData[neighborsNeighbor]) {
