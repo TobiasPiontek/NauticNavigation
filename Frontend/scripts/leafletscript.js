@@ -93,7 +93,7 @@ function back() {
     }
 };
 
-function checkComuputeState(){
+function checkComputeState(){
   if(startset && targetset){
     document.getElementById("compute").disabled = false;
   }
@@ -135,9 +135,12 @@ function checkFirst() {
             }
         };
         xhttp.open("POST", address, true);
+        if(document.getElementById("lat1").value < - 80){
+          document.getElementById("lat1").value = -80;
+        }
         xhttp.send("SetNode" + ";" + document.getElementById("lat1").value + "," + document.getElementById("long1").value);
         startset = true;
-        checkComuputeState();
+        checkComputeState();
     }
 };
 
@@ -156,7 +159,10 @@ function checkSecond() {
         }
     };
     xhttp.open("POST", address, true);
+    if(document.getElementById("lat2").value < - 80){
+      document.getElementById("lat2").value = -80;
+    }
     xhttp.send("SetNode" + ";" + document.getElementById("lat2").value + "," + document.getElementById("long2").value);
     targetset = true;
-    checkComuputeState();
+    checkComputeState();
 };

@@ -75,7 +75,7 @@ public class Benckmark {
         for (int i = 0; i < sampleSize; i++) {
             int nodeIdGridGraph;
             do {
-                double latitude = Math.random() * 180.0 - 90.0;
+                double latitude = Math.random() * 170.0 - 80.0;
                 double longitude = Math.random() * 360.0 - 180.0;
                 nodeIdGridGraph = GridGraph.findVertex(longitude, latitude);
             } while (/*!Navigation.isSurroundedByWater(nodeIdGridGraph) && */GridGraph.vertexData[nodeIdGridGraph]);

@@ -43,7 +43,6 @@ public class GridGraph {
             for (int j = 0; j < southToNorth; j++) {
                 latitude = rowToLatitude(j);
                 vertexData[i * southToNorth + j] = Geometry.pointInPolygonTest(longitude, latitude);
-
                 if (i * j >= percentage * step) {
                     CLInterface.progressPercentage(i * j, fullLength);
                     percentage += 1;
