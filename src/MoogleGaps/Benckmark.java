@@ -132,32 +132,28 @@ public class Benckmark {
         }
         out.println();
         out.println("Analysis");
-        out.println();
-        out.println("Average all" + ",,,,"
+        out.println(",Time speedup, Nodes used less,,t dijkstra avg.,t astar avg., total dijkstra, total astar, dijkstra routes, astar routes");
+        out.println("Average all" + ","
+                + dijkstraTimeTotal / astarTimeTotal + ","
+                + (double) aStarPullsTotal / dijkstraPullsTotal + "," + ","
                 + dijkstraTimeTotal / dijkstraPulls.length + ","
                 + astarTimeTotal / dijkstraPulls.length + ","
                 + dijkstraPullsTotal / dijkstraPulls.length + ","
-                + aStarPullsTotal / dijkstraPulls.length
+                + aStarPullsTotal / dijkstraPulls.length + ","
                 + dijkstraPulls.length + ","
-                + dijkstraPulls.length
-        );
-        out.println("time speedup" + ","
-                + dijkstraTimeTotal / astarTimeTotal + ","
-                + "nodes used" + ","
-                + (double) aStarPullsTotal / dijkstraPullsTotal);
+                + dijkstraPulls.length);
+
         out.println();
-        out.println("Average found" + ",,,,"
+        out.println("Average found" + ","
+                + dijkstraTimeFound / astarTimeFound + ","
+                + (double) aStarPullsFound / dijkstraPullsFound + "," + ","
                 + dijkstraTimeFound / dijkstraFound + ","
                 + astarTimeFound / astarFound + ","
                 + dijkstraPullsFound / dijkstraFound + ","
-                + aStarPullsFound / astarFound
+                + aStarPullsFound / astarFound + ","
                 + dijkstraFound + ","
                 + astarFound
         );
-        out.println("time speedup" + ","
-                + dijkstraTimeFound / astarTimeFound + ","
-                + "nodes used" + ","
-                + (double) aStarPullsFound / dijkstraPullsFound);
         out.println();
         out.close();
     }

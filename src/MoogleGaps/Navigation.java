@@ -49,16 +49,16 @@ public class Navigation {
                 for (int neighbor : neighbors) {
                     if (!GridGraph.vertexData[neighbor]) {
                         // check if neighbor is surrounded by water
-                        surroundedByWater = isSurroundedByWater(neighbor);
-                        if (surroundedByWater) {
-                            // check if neighbor is better
-                            cost = getCosts(currentNode, neighbor);
-                            if (weights[neighbor] > currentWeight + cost) {
-                                weights[neighbor] = currentWeight + cost;
-                                prev[neighbor] = currentNode;
-                            }
-                            queue.add(neighbor);
+                        //surroundedByWater = isSurroundedByWater(neighbor);
+                        //if (surroundedByWater) {
+                        // check if neighbor is better
+                        cost = getCosts(currentNode, neighbor);
+                        if (weights[neighbor] > currentWeight + cost) {
+                            weights[neighbor] = currentWeight + cost;
+                            prev[neighbor] = currentNode;
                         }
+                        queue.add(neighbor);
+                        // }
                     }
                 }
                 visited[currentNode] = true;
@@ -106,18 +106,18 @@ public class Navigation {
                 for (int neighbor : neighbors) {
                     if (!GridGraph.vertexData[neighbor]) {
                         // check if neighbor is surrounded by water
-                        surroundedByWater = isSurroundedByWater(neighbor);
-                        if (surroundedByWater) {
-                            // check if neighbor is better
-                            cost = getCosts(currentNode, neighbor);
-                            if (weights[neighbor] > currentWeight + cost) {
-                                weights[neighbor] = currentWeight + cost;
-                                weightsWithHeuristic[neighbor] = weights[neighbor] + getHeuristicDistance(neighbor, targetId);
-                                prev[neighbor] = currentNode;
-                            }
-                            queue.add(neighbor);
+                        //surroundedByWater = isSurroundedByWater(neighbor);
+                        //if (surroundedByWater) {
+                        // check if neighbor is better
+                        cost = getCosts(currentNode, neighbor);
+                        if (weights[neighbor] > currentWeight + cost) {
+                            weights[neighbor] = currentWeight + cost;
+                            weightsWithHeuristic[neighbor] = weights[neighbor] + getHeuristicDistance(neighbor, targetId);
+                            prev[neighbor] = currentNode;
                         }
+                        queue.add(neighbor);
                     }
+                    // }
                 }
                 visited[currentNode] = true;
             }
