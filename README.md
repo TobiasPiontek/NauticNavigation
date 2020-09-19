@@ -36,6 +36,9 @@ source (1000runs,grid_size=500000,date=18.09;19.01.csv)
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | 5.22      | -21.42        | 41.22       | -21.42       | 0.5342578      | 0.0011721     | 2573363              | 101                  | true            | true           | 671    |
 
+<img src="./BenchmarkData/BenchmarkPictures/500k_best_case.png" alt="drawing" width="400">
+ <br/>
+
 <br/>
 
 ### Worst case A star (in terms of node pulls)
@@ -44,6 +47,10 @@ source (1000runs,grid_size=500000,date=18.09;19.01.csv)
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | -59.58    | -153.9        | 75.78       | 42.66        | 0.5364174      | 1.2640244     | 2573363              | 2195931              | true            | true           | 780    |
 
+<img src="./BenchmarkData/BenchmarkPictures/500k_worst_case.png" alt="drawing" width="400">
+ <br/>
+
+
 <br/>
 
 ### Median of A star (in terms of node pulls)
@@ -51,6 +58,10 @@ source (1000runs,grid_size=500000,date=18.09;19.01.csv)
 | start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | -5.22     | 173.7         | -40.86      | 78.66        | 0.5276572      | 0.1196866     | 2573363              | 295116               | true            | true           | 722    |
+
+<img src="./BenchmarkData/BenchmarkPictures/500k_median_case.png" alt="drawing" width="400">
+ <br/>
+
 ---
 
 <br/>
@@ -73,6 +84,9 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | 23.31     | -62.37        | 32.49       | -62.73       | 2.4018132      | 0.0154737     | 10432125             | 54                   | true            | true           | 775    |
 
+<img src="./BenchmarkData/BenchmarkPictures/2m_best_case.png" alt="drawing" width="400">
+ <br/>
+
 <br/>
 
 ### Worst case A star (in terms of node pulls)
@@ -81,6 +95,9 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | -61.65    | 146.25        | 25.29       | -96.75       | 2.3890516      | 3.9453193     | 10432125             | 8752452              | true            | true           | 935    |
 
+<img src="./BenchmarkData/BenchmarkPictures/2m_worst_case.png" alt="drawing" width="400">
+ <br/>
+
 <br/>
 
 ### Median of A star (in terms of node pulls)
@@ -88,6 +105,9 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 | start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | -51.93    | 101.97        | -62.91      | 1.71         | 2.4009995      | 0.4972607     | 10432125             | 1199228              | true            | true           | 9      |
+
+<img src="./BenchmarkData/BenchmarkPictures/2m_median_case.png" alt="drawing" width="400">
+ <br/>
 
 <br/>
 
@@ -109,6 +129,9 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | -58.005   | 144.675       | -60.615     | 144.405      | 11.2043713     | 0.0152742     | 41854149             | 66                   | true            | true           | 849    |
 
+<img src="./BenchmarkData/BenchmarkPictures/8m_best_case.png" alt="drawing" width="400">
+ <br/>
+
 <br/>
 
 ### Worst case A star (in terms of node pulls)
@@ -117,6 +140,9 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | -19.125   | 154.665       | 55.575      | 12.375       | 10.9503689     | 19.1131436    | 41854149             | 33517960             | true            | true           | 748    |
 
+<img src="./BenchmarkData/BenchmarkPictures/8m_worst_case.png" alt="drawing" width="400">
+ <br/>
+
 <br/>
 
 ### Median of A star (in terms of node pulls)
@@ -124,6 +150,9 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 | start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | 87.615    | 49.455        | 54.675      | -179.505     | 11.6028939     | 1.9738589     | 41854149             | 5011196              | true            | true           | 593    |
+
+<img src="./BenchmarkData/BenchmarkPictures/8m_median_case.png" alt="drawing" width="400">
+ <br/>
 
 <br/>
 
