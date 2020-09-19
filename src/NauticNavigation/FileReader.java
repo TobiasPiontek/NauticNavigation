@@ -1,4 +1,4 @@
-package MoogleGaps;
+package NauticNavigation;
 
 import crosby.binary.osmosis.OsmosisReader;
 

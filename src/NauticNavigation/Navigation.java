@@ -1,4 +1,4 @@
-package MoogleGaps;
+package NauticNavigation;
 
 import java.util.ArrayList;
 import java.util.Arrays;

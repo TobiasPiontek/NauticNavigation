@@ -1,4 +1,4 @@
-package MoogleGaps;
+package NauticNavigation;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -98,7 +98,7 @@ public class Benckmark {
         long aStarPullsFound = 0;
         int dijkstraFound = 0;
         int aStarFound = 0;
-        
+
         for (int i = 0; i < dijkstraPulls.length; i++) {
             out.println(
                     GridGraph.idToLatitude(startNodes[i]) + ","

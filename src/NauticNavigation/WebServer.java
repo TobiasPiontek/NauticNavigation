@@ -1,4 +1,4 @@
-package MoogleGaps;
+package NauticNavigation;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;

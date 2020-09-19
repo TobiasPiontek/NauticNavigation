@@ -1,4 +1,4 @@
-package MoogleGaps;
+package NauticNavigation;
 
 import java.io.*;
 import java.sql.Timestamp;

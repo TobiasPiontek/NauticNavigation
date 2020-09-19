@@ -1,9 +1,10 @@
-package MoogleGaps;
+package NauticNavigation;
 
 public class Geometry {
 
     /**
      * takes latitude and longitude of point
+     *
      * @param latitude
      * @param longitude
      * @return n-vector, i.e. to earth's surface perpendicular vector through point
@@ -18,6 +19,7 @@ public class Geometry {
 
     /**
      * takes two 3D vectors A and B
+     *
      * @param a
      * @param b
      * @return returns their cross product AxB
@@ -32,6 +34,7 @@ public class Geometry {
 
     /**
      * takes two 3D vectors A and B
+     *
      * @param a
      * @param b
      * @return their dot product AB
@@ -46,6 +49,7 @@ public class Geometry {
 
     /**
      * takes N-vectors of two points A and B
+     *
      * @param nVectorA
      * @param nVectorB
      * @return their distance in km with R = 6371km
@@ -56,6 +60,7 @@ public class Geometry {
 
     /**
      * takes 3D vector
+     *
      * @param vector
      * @return its Euclidean norm
      */
@@ -65,6 +70,7 @@ public class Geometry {
 
     /**
      * takes two points A and B with their respective x and y coordinates
+     *
      * @param xA
      * @param yA
      * @param xB
@@ -90,6 +96,7 @@ public class Geometry {
     /**
      * Winding number algorithm
      * Weiler, Kevin (1994), "An Incremental Angle Point in Polygon Test", in Heckbert, Paul S. (ed.), Graphics Gems IV, San Diego, CA, USA: Academic Press Professional, Inc., pp. 16–23, ISBN 0-12-336155-9.
+     *
      * @param index     the index of the Polygon to test
      * @param longitude the longitude of the point to test collision with
      * @param latitude  the latitude to test collision with
@@ -126,6 +133,7 @@ public class Geometry {
 
     /**
      * takes delta and three points A, B, and C with their respective x and y coordinates
+     *
      * @param delta
      * @param xA
      * @param yA
@@ -155,6 +163,7 @@ public class Geometry {
 
     /**
      * takes two points A and B with their respective x and y coordinates and a y coordinate
+     *
      * @param xA
      * @param yA
      * @param xB
@@ -168,6 +177,7 @@ public class Geometry {
 
     /**
      * takes point with coordinates as longitude and latitude as double
+     *
      * @param longitude
      * @param latitude
      * @return true if point is in a polygon, i.e. on land; false if point is in water

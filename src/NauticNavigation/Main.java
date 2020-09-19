@@ -1,10 +1,8 @@
-package MoogleGaps;
-
+package NauticNavigation;
 
 import java.io.File;
 
 public class Main {
-
     public static void main(String[] args) {
         CLInterface.printTitelScreen();
         int decision = CLInterface.generateNewGridGraph();
@@ -31,8 +29,5 @@ public class Main {
         //For testing purposes
         //GeoJson.printGridGraph()
         //CLInterface.generateNavigationRoute();
-
-        //Start of the Webserver
-
     }
 }
