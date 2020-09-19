@@ -13,8 +13,51 @@ Join Meetings with this Link: https://jitsi-meet.fmi.uni-stuttgart.de/AlgLabCour
 - Choose the wanted file in the dialog with its listed number and confirm with ***[Enter]***
 - Go through the dialog as follows
     - the route will be displayed as a geojson LineString, which can be copy pasted into the http://geojson.io website
-    
 
+    
+<br/>
+    
+# Analysis of the Optimization part
+
+## Run 1 
+source (1000runs,grid_size=500000,date=18.09;19.01.csv)
+| Analysis      |              |                  |   |                 |              |                 |              |                  |               |
+|---------------|--------------|------------------|---|-----------------|--------------|-----------------|--------------|------------------|---------------|
+|               | Time speedup |  Nodes used less |   | t dijkstra avg. | t astar avg. |  total dijkstra |  total astar |  dijkstra routes |  astar routes |
+| Average all   | 2.73616507   | 0.17531607       |   | 0.53736895      | 0.19639493   | 2557982         | 448455       | 1000             | 1000          |
+|               |              |                  |   |                 |              |                 |              |                  |               |
+| Average found | 2.82310778   | 0.16944788       |   | 0.54061034      | 0.19149476   | 2573363         | 436050       | 987              | 987           |
+ 
+<br/>
+
+### Best Case A star (in terms of node pulls)
+
+| start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
+|-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
+| 5.22      | -21.42        | 41.22       | -21.42       | 0.5342578      | 0.0011721     | 2573363              | 101                  | true            | true           | 671    |
+
+<br/>
+
+### Worst case A star (in terms of node pulls)
+
+| start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
+|-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
+| -59.58    | -153.9        | 75.78       | 42.66        | 0.5364174      | 1.2640244     | 2573363              | 2195931              | true            | true           | 780    |
+
+<br/>
+
+### Median of A star (in terms of node pulls)
+
+| start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
+|-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
+| -5.22     | 173.7         | -40.86      | 78.66        | 0.5276572      | 0.1196866     | 2573363              | 295116               | true            | true           | 722    |
+---
+
+## Run 2
+
+
+
+---
 #### Task 1: Understand OSM Data Structures
 - As a first step, we need to get to know how the data is organized inside OSM.we are primarily interested in “nodes” and “ways”.
     - Resources
