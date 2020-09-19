@@ -53,7 +53,41 @@ source (1000runs,grid_size=500000,date=18.09;19.01.csv)
 | -5.22     | 173.7         | -40.86      | 78.66        | 0.5276572      | 0.1196866     | 2573363              | 295116               | true            | true           | 722    |
 ---
 
+<br/>
+
 ## Run 2
+source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
+
+| Analysis      |              |                  |   |                 |              |                 |              |                  |               |
+|---------------|--------------|------------------|---|-----------------|--------------|-----------------|--------------|------------------|---------------|
+|               | Time speedup |  Nodes used less |   | t dijkstra avg. | t astar avg. |  total dijkstra |  total astar |  dijkstra routes |  astar routes |
+| Average all   | 3.0265237    | 0.16416927       |   | 2.40409423      | 0.79434178   | 10400828        | 1707496      | 1000             | 1000          |
+|               |              |                  |   |                 |              |                 |              |                  |               |
+| Average found | 3.04224758   | 0.16333008       |   | 2.41134051      | 0.7926181    | 10432125        | 1703879      | 996              | 996           |
+
+<br/>
+
+### Best Case A star (in terms of node pulls)
+
+| start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
+|-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
+| 23.31     | -62.37        | 32.49       | -62.73       | 2.4018132      | 0.0154737     | 10432125             | 54                   | true            | true           | 775    |
+
+<br/>
+
+### Worst case A star (in terms of node pulls)
+
+| start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
+|-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
+| -61.65    | 146.25        | 25.29       | -96.75       | 2.3890516      | 3.9453193     | 10432125             | 8752452              | true            | true           | 935    |
+
+<br/>
+
+### Median of A star (in terms of node pulls)
+
+| start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
+|-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
+| -51.93    | 101.97        | -62.91      | 1.71         | 2.4009995      | 0.4972607     | 10432125             | 1199228              | true            | true           | 9      |
 
 
 
