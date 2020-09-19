@@ -89,7 +89,43 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 |-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
 | -51.93    | 101.97        | -62.91      | 1.71         | 2.4009995      | 0.4972607     | 10432125             | 1199228              | true            | true           | 9      |
 
+<br/>
 
+## Run 3
+(source 1000runs,grid_size=8000000,date=19.09;03.26.csv)
+
+| Analysis      |              |                  |   |                 |              |                 |              |                  |               |
+|---------------|--------------|------------------|---|-----------------|--------------|-----------------|--------------|------------------|---------------|
+|               | Time speedup |  Nodes used less |   | t dijkstra avg. | t astar avg. |  total dijkstra |  total astar |  dijkstra routes |  astar routes |
+| Average all   | 2.95581833   | 0.17024893       |   | 11.3515217      | 3.84039897   | 41854149        | 7125624      | 1000             | 1000          |
+|               |              |                  |   |                 |              |                 |              |                  |               |
+| Average found | 2.99941957   | 0.16775219       |   | 11.3511014      | 3.78443268   | 41854149        | 7021125      | 997              | 997           |
+
+<br/>
+
+### Best Case A star (in terms of node pulls)
+
+| start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
+|-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
+| -58.005   | 144.675       | -60.615     | 144.405      | 11.2043713     | 0.0152742     | 41854149             | 66                   | true            | true           | 849    |
+
+<br/>
+
+### Worst case A star (in terms of node pulls)
+
+| start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
+|-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
+| -19.125   | 154.665       | 55.575      | 12.375       | 10.9503689     | 19.1131436    | 41854149             | 33517960             | true            | true           | 748    |
+
+<br/>
+
+### Median of A star (in terms of node pulls)
+
+| start lat |  start   long |  dest   lat |  dest   long |  dijkstra time |  astar   time |  dijsktra node pulls |   astar   node pulls |  dijkstra found |  astar   found |  index |
+|-----------|---------------|-------------|--------------|----------------|---------------|----------------------|----------------------|-----------------|----------------|--------|
+| 87.615    | 49.455        | 54.675      | -179.505     | 11.6028939     | 1.9738589     | 41854149             | 5011196              | true            | true           | 593    |
+
+<br/>
 
 ---
 #### Task 1: Understand OSM Data Structures
