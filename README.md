@@ -3,23 +3,84 @@
 Repository for the University Stuttgart "Fachpraktikum"
 Join Meetings with this Link: https://jitsi-meet.fmi.uni-stuttgart.de/AlgLabCourseMeetingSS20
 
+The goal of the project was to build a route planner for sea navigation. 
+
+# Table of Contents
+- [Manual](#Manual)
+- [Performance analysis](#Performance-analysis)
+    - [Analysis conditions](#Analysis-conditions)
+    - [Analysis explanation](#Analysis-explanation)
+    - [Benchmark values](#Benchmark-values)
+        - [Run 1 (500.000 nodes)](#Run-1)
+        - [Run 2 (2.000.000 nodes)](#Run-2)
+        - [Run 3 (8.000.000 nodes)](#Run-3)
+    - [Discussion](#Discussion)
+
+- [Project requirements](#Project-requirements)
+
+- [Sources](#Sources)
 # Manual
 - Import the project into [IntelliJ Community Edition](https://www.jetbrains.com/de-de/idea/download/#section=windows)
-- Go to the VM-options of the main method and add
-    - Xmx8192m as a parameter or higher to allow the project to allocate enough RAM
-- Store the PBF-files in OSMMapData-folder
-    - ***all files need to end on ".pbf"*** to be detected by the filereader in the backend 
-- Start the backend
-- Choose the wanted file in the dialog with its listed number and confirm with ***[Enter]***
-- Go through the dialog as follows
-    - the route will be displayed as a geojson LineString, which can be copy pasted into the http://geojson.io website
+  - ***[optional Steps for grid graph generation]***
+    - Go to the VM-options of the main method and add -Xmx8192m as a parameter or higher to allow the projekct to allocate enough ram during grid graph generation
+        <img src="./BenchmarkData/TutorialPictures/editConfigurations.PNG" alt="drawing" width=80%>
+    <br/>
+        <img src="./BenchmarkData/TutorialPictures/vmParameter.PNG" alt="drawing" width=100%>
+    <br/> 
 
-    
+    - Store the PBF-files in the ***./OSMMapData*** folder
+        - ***all files need to end on ".pbf"*** to be detected by the filereader in the backend 
+- Start the Main method in the ***Main.java*** file
+- There are three modes available:
+    - [0] Generate new grid graph and start webserver
+        - can be used to generate a new grid graph
+        - follow the dialog to generate a new grid graph and start a webserver
+    - [1] use pre generated one and start webserver
+        - starts the webserver instantly using a pre generated grid graph
+        - simply select the cache file to load, the first number of the filename represents the node count
+            - 3 Files are available
+                - 500k nodes
+                - 2m nodes
+                - 8m nodes
+    - [2] start benchmarking mode: 
+        - the tool that was used to generate the performance measurements
+ 
 <br/>
     
-# Analysis of the Optimization part
+# Performance analysis
+The protocols of the Benchmarks are located in the ***./BenchmarkData*** Folder.
+The size equals the Grid graph node count that was used.
 
-## Run 1 
+<span style="color:red">Time measurements in the tables are always provided in seconds!</span>
+
+### Analysis conditions
+- All Benchmarks got performed by the Benchmark class in the projekt.
+- A Laptop with power supply plugged in was used
+    - RAM: 16 gb ddr4
+    - CPU: i5 6200U @2.4 ghz
+
+### Analysis explanation
+ - ***Time speedup***: average astar time/avg. dijkstra time
+ - ***Nodes used less***: average astar Nodes / avg. dijkstra nodes
+ - ***t dijkstra avg.***: average time per dijkstra calculation
+ - ***t astar avg.***: average time per astar calculation
+ - ***total dijkstra***: total amout of nodes that have been pulled out of heap for all dijkstra runs
+ - ***total astar***: total amout of nodes that have been pulled out of heap for all astar runs
+ - ***Average all*** All runs are considered
+ - ***Average found*** Only runs where a route was found are used for analysis (this is mainly used because a star cant perform any better if no route can be found)
+
+
+The performance analysis is split into three parts using different grid graph resolutions. Every part shows the overall average of the **dijkstra** and **astar** calculations as well as the parameters for the **best**, **worst** and **median** case with a picture of the route that has been calculated.
+
+<br/>
+
+## Benchmark values
+Consider the **.csv** files to access the raw data aquired
+
+---
+
+### Run 1
+**(1000 runs, 500.000 grid graph nodes)**<br/>
 source (1000runs,grid_size=500000,date=18.09;19.01.csv)
 | Analysis      |              |                  |   |                 |              |                 |              |                  |               |
 |---------------|--------------|------------------|---|-----------------|--------------|-----------------|--------------|------------------|---------------|
@@ -66,7 +127,8 @@ source (1000runs,grid_size=500000,date=18.09;19.01.csv)
 
 <br/>
 
-## Run 2
+### Run 2
+**(1000 runs, 2.000.000 grid graph nodes)**<br/>
 source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 
 | Analysis      |              |                  |   |                 |              |                 |              |                  |               |
@@ -109,9 +171,12 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 <img src="./BenchmarkData/BenchmarkPictures/2m_median_case.png" alt="drawing" width=80%>
  <br/>
 
+---
+
 <br/>
 
-## Run 3
+### Run 3
+**(1000 runs, 8.000.000 grid graph nodes)**<br/>
 (source 1000runs,grid_size=8000000,date=19.09;03.26.csv)
 
 | Analysis      |              |                  |   |                 |              |                 |              |                  |               |
@@ -154,9 +219,26 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 <img src="./BenchmarkData/BenchmarkPictures/8m_median_case.png" alt="drawing" width=80%>
  <br/>
 
+---
+
 <br/>
 
+## Discussion
+- All three Benchmark runs show an average performance gain of about 200%. Also node pulls out of heap have overall descreased to about 20% of the dijkstra amount.
+- The best-case runs show a straight line and have a very small time consumption
+    - This is because the A star heuristic performs best on straight lines, as more paths can be excluded right away
+- The worst case runs show extrem long curvy paths that lead to long running times.
+    - running time of astar can be 50% larger as dijkstra. <br/>
+    I assume that a more efficient heuristic calculation could solve that problem really well
+    - Even in worst case the a star algorithm uses about 20% nodes less than dijkstra
+- The median case is the most interesting one for me
+    - They show reasonable complex routes but have a performance increase of about 500% to 600%
+
+
+
 ---
+# Project requirements
+
 #### Task 1: Understand OSM Data Structures
 - As a first step, we need to get to know how the data is organized inside OSM.we are primarily interested in “nodes” and “ways”.
     - Resources
@@ -194,23 +276,20 @@ Add a GUI to your project. It should be possible to set start and end nodesas we
 #### Task 7: Speed Things Up
 Implement a speed-up technique/heuristic for your project.
 
+# Sources
+
 #### Dependencies used (located in dependencies folder):
 - Osmosis Pbf
     - Is used to parse PBF Files in java
     - Downloaded from https://mvnrepository.com/artifact/org.openstreetmap.osmosis/osmosis-pbf/0.46
-    - Komplettes Osmosis Archiev: https://github.com/openstreetmap/osmosis/releases/tag/0.47.4
+    - Complete Osmosis Archive: https://github.com/openstreetmap/osmosis/releases/tag/0.47.4
     - Tutorials to use: https://neis-one.org/2017/10/processing-osm-data-java/
-- osm4j
-    - used to parsePBF files in Java (alternative for Osmosis)
-    - https://github.com/topobyte/osm4j-extra
-
-
         
 #### Tutorial used
 - ##### Task 3
     - [Tutorial for vector matheatics](http://www.movable-type.co.uk/scripts/latlong-vectors.html)
     - [Point in polygon test](http://geomalgorithms.com/a03-_inclusion.html)
-    - Sorting Arrays with index List https://stackoverflow.com/questions/4859261/get-the-indices-of-an-array-after-sorting
+    - [Sorting Arrays with index List](https://stackoverflow.com/questions/4859261/get-the-indices-of-an-array-after-sorting)
     - https://howtodoinjava.com/sort/collections-sort/
         
 
