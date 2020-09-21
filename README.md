@@ -9,6 +9,7 @@ The goal of the project was to build a route planner for sea navigation.
 - [Manual](#Manual)
     - [Requirements](#Requirements)
     - [How to build](#How-to-build)
+    - [How to run](#How-to-run)
 - [Performance analysis](#Performance-analysis)
     - [Analysis conditions](#Analysis-conditions)
     - [Analysis explanation](#Analysis-explanation)
@@ -17,6 +18,7 @@ The goal of the project was to build a route planner for sea navigation.
         - [Run 2 (2.000.000 nodes)](#Run-2)
         - [Run 3 (8.000.000 nodes)](#Run-3)
     - [Discussion](#Discussion)
+    - [Conclusion](#Conclusion)
 
 - [Project requirements](#Project-requirements)
 
@@ -42,7 +44,7 @@ an installed [Java runtime environment](https://www.oracle.com/java/technologies
 
 ## How to run
 - A pre build version as a jar is available right from the start
-- Simply start the .bat file on Windows or use the .sh on MacOS oder Linux
+- Simply start the .bat file on Windows or use the .sh on MacOS or Linux
 
 - There are three modes available:
     - [0] Generate new grid graph and start webserver
@@ -59,6 +61,16 @@ an installed [Java runtime environment](https://www.oracle.com/java/technologies
         - the tool that was used to generate the performance measurements
 - Wait until the Frontend is booted up (takes a second with pre generated gridgraph)
 - Open the ```NauticNavigation.html``` located in **/Fronted** in your Browser
+    
+    <img align="center" src="./BenchmarkData/TutorialPictures/Frontend.png" width = 50%> 
+
+- Start- and endnode can be either set by
+    - interactively by clicking on the map
+        - nodes are set alternately on the map
+        - the node to set can be switched manually by hitting the set button
+    - manually by providing a latitude and longitude in the fields and confirming the coordinate by pressing the check button
+- if both coordinates are set and confirmed the Calculate route button unlocks
+- during route calculation the check buttons as well as the calculate buttons stay inactive
 
 <br/>
     
@@ -251,6 +263,8 @@ source (1000runs,grid_size=2000000,date=18.09;19.57.csv)
 - The median case is the most interesting one for me
     - They show reasonable complex routes but have a performance increase of about 500% to 600%
 
+## Conclusion
+I think, that the a star algorithms greatest bottleneck is the complexity of the heuristic function. During dijkstra computation the distance function doing a lot of transformation is not used, as we generate a lookuptable for all possible paths. This cannot be done during astar. I was unable to find a heuristic function that is cheaper and fullfiles the criteria to never overestimate cost.
 
 
 ---
