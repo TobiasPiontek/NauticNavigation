@@ -28,10 +28,13 @@ var x1;
 var y1;
 var x2;
 var y2;
+var x1route;
+var y1route;
+var x2route;
+var y2route;
 var startset = false;
 var targetset = false;
-
-var readyState = true;
+var readyState = true;  //used to block the buttons during route calculation
 
 //Object that represents the ways later
 var weg;
@@ -60,7 +63,6 @@ mymap.on('click', function(e) {
         document.getElementById("lat1").value = x1;
         document.getElementById("long1").value = y1;
 		checkFirst();
-		compute();
 		next();
 
     } else {
@@ -73,7 +75,6 @@ mymap.on('click', function(e) {
         document.getElementById("lat2").value = x2;
         document.getElementById("long2").value = y2;
 		checkSecond();
-		compute();
 		back();
     }
 });
@@ -106,18 +107,21 @@ function compute() {
         if (weg) {
             mymap.removeLayer(weg);
         }
-
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 console.log(this.responseText);
                 myLines = JSON.parse(this.responseText);
                 console.log(myLines);
-                weg = L.geoJSON(myLines, { style: myStyle }).addTo(mymap);
+                weg = L.geoJSON(myLines, { style: myStyle }).addTo(mymap);		
 				readyState = true;
 				document.getElementById("compute").disabled = false;
 				document.getElementById("point1").disabled = false;
 				document.getElementById("point2").disabled = false;
+				mymap.removeLayer(secondmarker);
+				mymap.removeLayer(firstmarker);
+				firstmarker = new L.Marker([x1route,y1route]).addTo(mymap);
+				secondmarker = new L.Marker([x2route,y2route]).addTo(mymap);	
             }
         };
         if(readyState){
@@ -140,6 +144,8 @@ function checkFirst() {
                 var split = response.split(",");
                 document.getElementById("lat1").value = split[0];
                 document.getElementById("long1").value = split[1];
+				x1route = split[0];
+				y1route = split[1];
                 if (firstmarker) {
                     mymap.removeLayer(firstmarker);
                 }
@@ -164,6 +170,8 @@ function checkSecond() {
             var split = response.split(",");
             document.getElementById("lat2").value = split[0];
             document.getElementById("long2").value = split[1];
+			x2route = split[0];
+			y2route = split[1];
             if (secondmarker) {
                 mymap.removeLayer(secondmarker);
             }
