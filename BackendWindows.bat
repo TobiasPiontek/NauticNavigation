@@ -1,0 +1,1 @@
+start java -Xmx9192m -jar NauticNavigation.jar

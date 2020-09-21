@@ -31,6 +31,8 @@ var y2;
 var startset = false;
 var targetset = false;
 
+var readyState = true;
+
 //Object that represents the ways later
 var weg;
 
@@ -112,15 +114,25 @@ function compute() {
                 myLines = JSON.parse(this.responseText);
                 console.log(myLines);
                 weg = L.geoJSON(myLines, { style: myStyle }).addTo(mymap);
+				readyState = true;
+				document.getElementById("compute").disabled = false;
+				document.getElementById("point1").disabled = false;
+				document.getElementById("point2").disabled = false;
             }
         };
-        xhttp.open("POST", address, true);
+        if(readyState){
+		xhttp.open("POST", address, true);
         xhttp.send("calculateRoute;" + document.getElementById("lat1").value + "," + document.getElementById("long1").value + ";" + document.getElementById("lat2").value + "," + document.getElementById("long2").value);
-    }
+		readyState = false;
+		document.getElementById("compute").disabled = true;
+		document.getElementById("point1").disabled = true;
+		document.getElementById("point2").disabled = true;
+		}
+	}
 };
 
+
 function checkFirst() {
-    if (firstmarker != null) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -141,7 +153,7 @@ function checkFirst() {
         xhttp.send("SetNode" + ";" + document.getElementById("lat1").value + "," + document.getElementById("long1").value);
         startset = true;
         checkComputeState();
-    }
+
 };
 
 function checkSecond() {

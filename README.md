@@ -7,6 +7,8 @@ The goal of the project was to build a route planner for sea navigation.
 
 # Table of Contents
 - [Manual](#Manual)
+    - [Requirements](#Requirements)
+    - [How to build](#How-to-build)
 - [Performance analysis](#Performance-analysis)
     - [Analysis conditions](#Analysis-conditions)
     - [Analysis explanation](#Analysis-explanation)
@@ -20,6 +22,12 @@ The goal of the project was to build a route planner for sea navigation.
 
 - [Sources](#Sources)
 # Manual
+## Requirements
+OS: Windows, Mac OS oder Linux pc <br/>
+RAM: 16gb <br/>
+an installed [Java runtime environment](https://www.oracle.com/java/technologies/javase-jre8-downloads.html) with at least Java 8+
+
+## How to build
 - Import the project into [IntelliJ Community Edition](https://www.jetbrains.com/de-de/idea/download/#section=windows)
   - ***[optional Steps for grid graph generation]***
     - Go to the VM-options of the main method and add -Xmx8192m as a parameter or higher to allow the projekct to allocate enough ram during grid graph generation
@@ -30,7 +38,12 @@ The goal of the project was to build a route planner for sea navigation.
 
     - Store the PBF-files in the ***./OSMMapData*** folder
         - ***all files need to end on ".pbf"*** to be detected by the filereader in the backend 
-- Start the Main method in the ***Main.java*** file
+- Build and run the Main method in the ***Main.java*** file
+
+## How to run
+- A pre build version as a jar is available right from the start
+- Simply start the .bat file on Windows or use the .sh on MacOS oder Linux
+
 - There are three modes available:
     - [0] Generate new grid graph and start webserver
         - can be used to generate a new grid graph
@@ -44,7 +57,9 @@ The goal of the project was to build a route planner for sea navigation.
                 - 8m nodes
     - [2] start benchmarking mode: 
         - the tool that was used to generate the performance measurements
- 
+- Wait until the Frontend is booted up (takes a second with pre generated gridgraph)
+- Open the ```NauticNavigation.html``` located in **/Fronted** in your Browser
+
 <br/>
     
 # Performance analysis
@@ -58,6 +73,8 @@ The size equals the Grid graph node count that was used.
 - A Laptop with power supply plugged in was used
     - RAM: 16 gb ddr4
     - CPU: i5 6200U @2.4 ghz
+    - OS: Windows 10
+    - using JRE 8
 
 ### Analysis explanation
  - ***Time speedup***: average astar time/avg. dijkstra time
