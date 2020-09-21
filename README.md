@@ -25,7 +25,7 @@ The goal of the project was to build a route planner for sea navigation.
 - [Sources](#Sources)
 # Manual
 ## Requirements
-OS: Windows, Mac OS oder Linux pc <br/>
+OS: Windows 10, Linux might work <br/>
 RAM: 16gb <br/>
 an installed [Java runtime environment](https://www.oracle.com/java/technologies/javase-jre8-downloads.html) with at least Java 8+
 
