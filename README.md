@@ -25,11 +25,16 @@ The goal of the project was to build a route planner for sea navigation.
 - [Sources](#Sources)
 # Manual
 ## Requirements
-OS: Windows 10, Linux might work <br/>
+OS: Windows 10, Linux<br/>
 RAM: 16gb <br/>
-an installed [Java runtime environment](https://www.oracle.com/java/technologies/javase-jre8-downloads.html) with at least Java 8+
+- an installed [JDK](https://www.oracle.com/de/java/technologies/javase/javase-jdk8-downloads.html) with at least Java 8+
+- an installed maven for build on console
+
+Remark: The code was tested under Windows and Windows subsystem for linux and should work. MacOS was not tested
 
 ## How to build
+
+### build with Intellij
 - Import the project into [IntelliJ Community Edition](https://www.jetbrains.com/de-de/idea/download/#section=windows)
   - ***[optional Steps for grid graph generation]***
     - Go to the VM-options of the main method and add -Xmx8192m as a parameter or higher to allow the projekct to allocate enough ram during grid graph generation
@@ -41,6 +46,10 @@ an installed [Java runtime environment](https://www.oracle.com/java/technologies
     - Store the PBF-files in the ***./OSMMapData*** folder
         - ***all files need to end on ".pbf"*** to be detected by the filereader in the backend 
 - Build and run the Main method in the ***Main.java*** file
+
+### Build with maven
+- run ```mvn clean install```
+    - this should build the whole project and create a jar file in the main directory
 
 ## How to run
 - A pre build version as a jar is available right from the start
