@@ -9,6 +9,8 @@ The goal of the project was to build a route planner for sea navigation.
 - [Manual](#Manual)
     - [Requirements](#Requirements)
     - [How to build](#How-to-build)
+        - [Build with Intellij](#Build-with-Intellij)
+        - [Build with maven](#Build-with-maven)
     - [How to run](#How-to-run)
 - [Performance analysis](#Performance-analysis)
     - [Analysis conditions](#Analysis-conditions)
@@ -34,7 +36,7 @@ Remark: The code was tested under Windows and Windows subsystem for linux and sh
 
 ## How to build
 
-### build with Intellij
+### Build with Intellij
 - Import the project into [IntelliJ Community Edition](https://www.jetbrains.com/de-de/idea/download/#section=windows)
   - ***[optional Steps for grid graph generation]***
     - Go to the VM-options of the main method and add -Xmx8192m as a parameter or higher to allow the projekct to allocate enough ram during grid graph generation
@@ -48,11 +50,11 @@ Remark: The code was tested under Windows and Windows subsystem for linux and sh
 - Build and run the Main method in the ***Main.java*** file
 
 ### Build with maven
-- run ```mvn clean install```
-    - this should build the whole project and create a jar file in the main directory
+- run ```mvn clean install``` in the project directory
+    - this should build the whole project and create a jar file in the project directory
 
 ## How to run
-- Simply start the .bat file on Windows or use the .sh on MacOS or Linux
+- Simply start the ```.bat``` file on Windows or execute the ```.sh``` on Linux
 
 - There are three modes available:
     - [0] Generate new grid graph and start webserver
@@ -70,7 +72,7 @@ Remark: The code was tested under Windows and Windows subsystem for linux and sh
 - Wait until the Frontend is booted up (takes a second with pre generated gridgraph)
 - Open the ```NauticNavigation.html``` located in **/Fronted** in your Browser
     
-    <img align="center" src="./BenchmarkData/TutorialPictures/Frontend.png" width = 50%> 
+    <img src="./BenchmarkData/TutorialPictures/Frontend.png" width = 50%> 
 
 - Start- and endnode can be either set by
     - interactively by clicking on the map
