@@ -52,7 +52,6 @@ Remark: The code was tested under Windows and Windows subsystem for linux and sh
     - this should build the whole project and create a jar file in the main directory
 
 ## How to run
-- A pre build version as a jar is available right from the start
 - Simply start the .bat file on Windows or use the .sh on MacOS or Linux
 
 - There are three modes available:
