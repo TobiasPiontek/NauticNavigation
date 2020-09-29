@@ -2,7 +2,10 @@
 *.class
 out/*
 target/*
-*.jar
+
+# idea files
+*/.idea/workspace.xml
+*/.idea/tasks.xml
 
 # Log file
 *.log
