@@ -72,7 +72,7 @@ Remark: The code was tested under Windows and Windows subsystem for linux and sh
 - Wait until the Frontend is booted up (takes a second with pre generated gridgraph)
 - Open the ```NauticNavigation.html``` located in **/Fronted** in your Browser
     
-    <img src="./BenchmarkData/TutorialPictures/Frontend.png" width = 50%> 
+    <img src="./BenchmarkData/TutorialPictures/Frontend.PNG" width = 50%> 
 
 - Start- and endnode can be either set by
     - interactively by clicking on the map
