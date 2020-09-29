@@ -1,1 +1,1 @@
-java -Xmx9192m -jar NauticNavigation.jar
+java -Xmx9192m -jar NauticNavigation-1.0.jar
