@@ -5,6 +5,12 @@ Join Meetings with this Link: https://jitsi-meet.fmi.uni-stuttgart.de/AlgLabCour
 
 The goal of the project was to build a route planner for sea navigation. 
 
+<br>
+
+## The Latest Commit: (final commit) is the commit relevant for this project 
+
+# [Online link for the Github repository](https://github.com/TobiasPiontek/NauticNavigation)
+
 # Table of Contents
 - [Manual](#Manual)
     - [Requirements](#Requirements)
@@ -32,7 +38,7 @@ RAM: 16gb <br/>
 - an installed [JDK](https://www.oracle.com/de/java/technologies/javase/javase-jdk8-downloads.html) with at least Java 8+
 - an installed maven for build on console
 
-Remark: The code was tested under Windows and Windows subsystem for linux and should work. MacOS was not tested
+Remark: The code was tested under Windows and Windows subsystem for linux and should work. Also a Github pipepline was implemented that tests the build with openjdk 8 (located in the .github folder). MacOS was not tested. Github pipeline status can be accessed by clicking on the green arrow. Pipeline script is also an indicator, that this builds on ubuntu.
 
 ## How to build
 
@@ -54,8 +60,10 @@ Remark: The code was tested under Windows and Windows subsystem for linux and sh
     - this should build the whole project and create a jar file in the project directory
 
 ## How to run
-- Simply start the ```.bat``` file on Windows or execute the ```.sh``` on Linux
-
+- Using the jar
+    - Simply start the ```.bat``` file on Windows or execute the ```.sh``` on Linux
+- Using Intellij
+    - simply hit the run button in the top right corner
 - There are three modes available:
     - [0] Generate new grid graph and start webserver
         - can be used to generate a new grid graph

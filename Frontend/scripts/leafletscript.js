@@ -41,7 +41,7 @@ var weg;
 
 //loading of the leaflet map
 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token=' + accesstoken , {
-    maxZoom: 6,
+    maxZoom: 10,
     id: 'mapbox.light'
 }).addTo(mymap);
 
