@@ -1,13 +1,12 @@
 
 <img src="./Frontend/Logo.png" alt="drawing" width="200"> <br/>
 Repository for the University Stuttgart "Fachpraktikum"
-Join Meetings with this Link: https://jitsi-meet.fmi.uni-stuttgart.de/AlgLabCourseMeetingSS20
 
 The goal of the project was to build a route planner for sea navigation. 
 
 <br>
 
-## The Latest Commit: (final commit) is the commit relevant for this project 
+## The Latest Commit: (final commit removed link) is the commit relevant for this project 
 
 # [Online link for the Github repository](https://github.com/TobiasPiontek/NauticNavigation)
 
